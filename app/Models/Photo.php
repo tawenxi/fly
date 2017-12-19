@@ -11,10 +11,13 @@ class Photo extends Model
     protected $fillable = [
         'name',
         'path',
+        'type',
         'thumbnail_path'
     ];
 
     protected $baseDir = 'images/flyers';
+    protected $PhotoDir;
+
 
     public function flyer()
     {
@@ -28,16 +31,19 @@ class Photo extends Model
 
     protected function saveAs($name)
     {
-        $this->name = sprintf("%s-%s", time(), $name);
-        $this->path = sprintf("%s/%s", $this->baseDir, $this->name);
-        $this->thumbnail_path = sprintf("%s/tn-%s", $this->baseDir, $this->name);
+        $photoName = explode('-', $name);
+        $this->PhotoDir = $this->baseDir.'/'.$photoName[0];
+        $this->name = sprintf("%s-%s", time(), $photoName[1]);
+        $this->path = sprintf("%s/%s", $this->PhotoDir, $this->name);
+        $this->type = substr($this->PhotoDir, 14);
+        $this->thumbnail_path = sprintf("%s/tn-%s", $this->PhotoDir, $this->name);
 
         return $this;
     }
 
     public function move(UploadedFile $file)
     {
-        $file->move($this->baseDir, $this->name);
+        $file->move($this->PhotoDir, $this->name);
 
         $this->makeThumbnail();
 

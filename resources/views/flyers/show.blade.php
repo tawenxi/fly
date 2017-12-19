@@ -25,14 +25,17 @@
         </div>
 
         <div class="col-md-8 gallery">
-            @foreach ($flyer->photos->chunk(4) as $set)
-                <div class="row">
-                    @foreach ($set as $photo)
-                        <div class="col-md-3 gallery__image">
-                            <img src="/{{ $photo->thumbnail_path }}" alt="">
-                        </div>
-                    @endforeach
-                </div>
+            @foreach ($photos as $key=>$photo)
+            <h2>{{ $photo->first()->type }}</h2>
+                @foreach ($photo->chunk(4) as $set)
+                    <div class="row">
+                        @foreach ($set as $photo)
+                            <div class="col-md-3 gallery__image">
+                                <img src="/{{ $photo->thumbnail_path }}" alt="">
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach
             @endforeach
 
             

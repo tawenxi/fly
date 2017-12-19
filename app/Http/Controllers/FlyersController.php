@@ -67,8 +67,12 @@ class FlyersController extends Controller
     {
         
         $flyer = Flyer::locatedAt($id);
+        $photos = $flyer->photos->groupBy('type');
 
-        return view('flyers.show', compact('flyer'));
+        //dd($photos->toarray());
+
+
+        return view('flyers.show', compact('flyer','photos'));
     }
 
     public function addPhoto($id, Request $request)
