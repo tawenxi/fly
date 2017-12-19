@@ -1,16 +1,6 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
+Route::get('{flyer_id}/incomes', 'IncomesController@index')->name('incomes.index');
+Route::resource('incomes', 'IncomesController', ['only' => ['show', 'index','create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('/', ['as' => 'home_path', 'uses' => 'PagesController@home']);
 
 // Authentication routes...
@@ -37,3 +27,4 @@ Route::get('ff', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

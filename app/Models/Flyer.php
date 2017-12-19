@@ -1,8 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Income;
 
 class Flyer extends Model
 {
@@ -38,6 +39,11 @@ class Flyer extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function incomes()
+    {
+        return $this->belongsTo(Income::class, 'user_id');
+    } 
 
     public function ownedBy(User $user)
     {

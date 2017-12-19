@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Flyer;
-use App\Photo;
+use App\Models\Flyer;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 use App\Http\Requests\FlyerRequest;
 use App\Http\Controllers\Controller;

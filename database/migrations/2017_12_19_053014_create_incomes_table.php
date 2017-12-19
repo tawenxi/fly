@@ -9,8 +9,12 @@ class CreateIncomesTable extends Migration
 	{
 		Schema::create('incomes', function(Blueprint $table) {
             $table->increments('id');
-            
-            $table->timestamps();
+            $table->date('date');
+
+            $table->integer('flyer_id');
+            $table->string('zy');
+            $table->string('amount');
+            $table->string('type');
         });
 	}
 

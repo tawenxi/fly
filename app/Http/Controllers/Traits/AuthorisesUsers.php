@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Traits;
 
-use App\Flyer;
+use App\Models\Flyer;
 use Illuminate\Http\Request;
 
 trait AuthorisesUsers

@@ -8,12 +8,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home_path') }}">Flyer</a>
+            <a class="navbar-brand" href="{{ route('flyers.index') }}">枚江扶贫信息网</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ route('home_path') }}">Home</a></li>
-                <li><a href="{{ route('flyers.create') }}">New Flyer</a></li>
+                <li class="active"><a href="{{ route('flyers.index') }}">首页</a></li>
+                <li><a href="{{ route('flyers.create') }}">新增贫困户</a></li>
             </ul>
 
        {{--      @if ( $signedIn )
