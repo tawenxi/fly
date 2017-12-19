@@ -1,5 +1,13 @@
 <?php
+Route::get('{flyer_id}/families', 'FamiliesController@index')->name('families.index');
+
+Route::resource('families', 'FamiliesController', ['only' => ['show', 'index','create', 'store', 'update', 'edit', 'destroy']]);
+
+
+
+
 Route::get('{flyer_id}/incomes', 'IncomesController@index')->name('incomes.index');
+
 Route::resource('incomes', 'IncomesController', ['only' => ['show', 'index','create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('/', ['as' => 'home_path', 'uses' => 'PagesController@home']);
 
@@ -27,4 +35,5 @@ Route::get('ff', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 

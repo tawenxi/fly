@@ -7,7 +7,8 @@
         @foreach ($Allincomes as $incomes)
             <div class="panel-heading">
                 <h1>
-                    <i class="glyphicon glyphicon-align-justify"></i> 收入合计： {{ $incomes->sum('amount') }}
+                    <i class="glyphicon glyphicon-align-justify"></i> 收入合计： {{ $incomes->sum('amount') }}  
+                    人均收入 {{ $incomes->sum('amount')/$incomes->first()->flyer->familes->count() }}
                     <a class="btn btn-success pull-right" href="{{ route('incomes.create').'?flyer='.preg_match("/\d+/", url()->full()).'&date='.$incomes->first()->date }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
                 </h1>
             </div>

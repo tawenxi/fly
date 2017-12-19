@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Income;
+use App\Models\Family;
+
 
 class Flyer extends Model
 {
@@ -42,7 +44,12 @@ class Flyer extends Model
 
     public function incomes()
     {
-        return $this->belongsTo(Income::class, 'user_id');
+        return $this->hasMany(Income::class, 'flyer_id');
+    } 
+
+    public function familes()
+    {
+        return $this->hasMany(Family::class, 'flyer_id');
     } 
 
     public function ownedBy(User $user)

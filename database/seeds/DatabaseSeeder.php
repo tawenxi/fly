@@ -31,7 +31,8 @@ class DatabaseSeeder extends Seeder
 
         //$this->call('ConstantsTableSeeder');
         // $this->call(UsersTableSeeder::class);
-        $this->call(IncomesTableSeeder::class);
+		$this->call(FamilysTableSeeder::class);
+        //$this->call(IncomesTableSeeder::class);
 
         Model::reguard();
 
