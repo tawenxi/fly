@@ -24,7 +24,7 @@ Route::post('register', 'Auth\loginController@postRegister');
 
 
 
-Route::post('{bangfuID}/flyers', ['as' => 'store_photo_path', 'uses' => 'FlyersController@addPhoto']);
+Route::post('{bangfuID}/{dir}/flyers', ['as' => 'store_photo_path', 'uses' => 'FlyersController@addPhoto']);
 Route::resource('flyers', 'FlyersController');
 Route::get('{zip}/{street}', 'FlyersController@show');
 

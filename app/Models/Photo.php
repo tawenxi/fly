@@ -24,18 +24,17 @@ class Photo extends Model
         return $this->belongsTo(Flyer::class);
     }
 
-    public static function named($name)
+    public static function named($name, $dir)
     {
-        return (new static)->saveAs($name);
+        return (new static)->saveAs($name, $dir);
     }
 
-    protected function saveAs($name)
+    protected function saveAs($name ,$dir)
     {
-        $photoName = explode('-', $name);
-        $this->PhotoDir = $this->baseDir.'/'.$photoName[0];
-        $this->name = sprintf("%s-%s", time(), $photoName[1]);
+        $this->PhotoDir = $this->baseDir.'/'.$dir;
+        $this->name = sprintf("%s-%s", time(), $name);
         $this->path = sprintf("%s/%s", $this->PhotoDir, $this->name);
-        $this->type = substr($this->PhotoDir, 14);
+        $this->type = $dir;
         $this->thumbnail_path = sprintf("%s/tn-%s", $this->PhotoDir, $this->name);
 
         return $this;

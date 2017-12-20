@@ -41,7 +41,7 @@
             
             <hr>
             <form
-                action="{{ route('store_photo_path', [$flyer->id]) }}"
+                action="{{ route('store_photo_path', [$flyer->id,$request->dir]) }}"
                 method="post"
                 class="dropzone"
                 id="addPhotosForm"

@@ -63,7 +63,7 @@ class FlyersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         
         $flyer = Flyer::locatedAt($id);
@@ -72,10 +72,10 @@ class FlyersController extends Controller
         //dd($photos->toarray());
 
 
-        return view('flyers.show', compact('flyer','photos'));
+        return view('flyers.show', compact('flyer','photos','request'));
     }
 
-    public function addPhoto($id, Request $request)
+    public function addPhoto($id,$dir, Request $request)
     {
 
         $this->validate($request, [
@@ -86,15 +86,15 @@ class FlyersController extends Controller
             return $this->unauthorised($id);
         }
 
-        $photo = $this->makePhoto($request->file('photo'));
+        $photo = $this->makePhoto($request->file('photo'),$dir);
 
         Flyer::locatedAt($id)->addPhoto($photo);
 
     }
 
-    protected function makePhoto(UploadedFile $file)
+    protected function makePhoto(UploadedFile $file,$dir)
     {
-        return Photo::named($file->getClientOriginalName())->move($file);
+        return Photo::named($file->getClientOriginalName(),$dir)->move($file);
     }
 
     /**
