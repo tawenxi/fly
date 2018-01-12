@@ -59,11 +59,8 @@
         </div>
 
     </div>
+    
     <div class="col-sm-6">
-
-
-
-
         <div class="form-group">
             <label for="ruhulu">入户路:</label>
             <input type="text" name="ruhulu" id="ruhulu" class="form-control" 

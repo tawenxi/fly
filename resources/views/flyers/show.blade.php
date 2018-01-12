@@ -5,33 +5,45 @@
 @endsection
 
 @section('content')
+    <table class="table table-bordered table-striped table-hover table-condensed">
+        <caption></caption>
+        <thead>
+            <tr class="alert-info " >
+                <th>标签</th>
+                <th>数量</th>
+            </tr>
+        </thead>
+        <tbody >
+            @foreach ($photos as $key=>$photo)
+                <tr class="success">
+                <td>{{ $photo->first()->type }}</td>
+                <td>{{ $photo->count() }}</td>
+            </tr>
+            @endforeach
+            
+        </tbody>
+    </table>
     <div class="row">
-        <div class="col-md-4">
-            <h1>{{ $flyer->name }}</h1>
+       @if ($flyer->id == 10000)
+            <div class="col-md-12 gallery">
 
-       
-                    <div >
-                    <a class="btn btn-lg btn-success btn-block" href="/{{ $flyer->id }}/incomes">收入状况</a>
-                    </div>
-                    <div >
-                    <a class="btn btn-lg btn-primary btn-block" href="/{{ $flyer->id }}/families">家庭成员</a>
-                    </div>
-                    <form action="{{ route('flyers.update',$flyer->id) }}" method="POST" accept-charset="UTF-8">
-                        <input type="hidden" name="_method" value="PATCH">
-         
-                         @include('flyers.partials._form')
+        @else 
+            @include('flyers.partials.info')
 
-                    </form>
-        </div>
+            <div class="col-md-8 gallery">
+        @endif 
 
-        <div class="col-md-8 gallery">
+
+        
             @foreach ($photos as $key=>$photo)
             <h2>{{ $photo->first()->type }}</h2>
                 @foreach ($photo->chunk(4) as $set)
                     <div class="row">
                         @foreach ($set as $photo)
                             <div class="col-md-3 gallery__image">
-                                <img src="/{{ $photo->thumbnail_path }}" alt="">
+                                <a href="/{{ $photo->path }}" "email me">
+                                   <img src="/{{ $photo->thumbnail_path }}" alt="">
+                                </a>
                             </div>
                         @endforeach
                     </div>
@@ -57,12 +69,5 @@
 @stop
 
 @section('footer')
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
-    <script type="text/javascript">
-        Dropzone.options.addPhotosForm = {
-            paramName: 'photo',
-            maxFileSize: 3,
-            acceptedFiles: '.jpg, .jpeg, .png, .bmp',
-        };
-    </script>
+    @include('flyers.partials.addphoto')
 @endsection
